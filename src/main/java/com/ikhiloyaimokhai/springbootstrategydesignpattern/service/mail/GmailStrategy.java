@@ -46,7 +46,6 @@ public class GmailStrategy implements MailStrategy {
     }
 
 
-    @Override
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.info("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
                 isMultipart, isHtml, to, subject, content);
@@ -70,38 +69,35 @@ public class GmailStrategy implements MailStrategy {
         }
     }
 
-    @Override
+
     public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
         Locale locale = Locale.getDefault();
         Context context = new Context();
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, environment.getRequiredProperty("BASE_URL"));
         String content = templateEngine.process(templateName, context);
-//        String subject = messageSource.getMessage(titleKey, null, locale);
         String subject = environment.getRequiredProperty(titleKey);
-
-//        String subject = "Subject";
         sendEmail(user.getEmail(), subject, content, false, true);
 
     }
 
     @Override
     public void sendActivationEmail(User user) {
-        log.info("SpringMailStrategy==> Sending activation email to '{}'", user.getEmail());
+        log.info("GmailStrategy====> Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/activationEmail", "EMAIL_ACTIVATION");
 
     }
 
     @Override
     public void sendCreationEmail(User user) {
-        log.info("SpringMailStrategy==> Sending creation email to '{}'", user.getEmail());
+        log.info("GmailStrategy==> Sending creation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/creationEmail", "EMAIL_CREATION");
 
     }
 
     @Override
     public void sendPasswordResetMail(User user) {
-        log.debug("SpringMailStrategy==> Sending password reset email to '{}'", user.getEmail());
+        log.debug("GmailStrategy==> Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "EMAIL_RESET");
     }
 }

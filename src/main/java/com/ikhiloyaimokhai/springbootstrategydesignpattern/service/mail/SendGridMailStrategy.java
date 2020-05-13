@@ -29,7 +29,6 @@ public class SendGridMailStrategy implements MailStrategy {
         this.environment = environment;
     }
 
-    @Override
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.info("Send email to '{}' with subject '{}' and content={}", to, subject, content);
@@ -57,7 +56,6 @@ public class SendGridMailStrategy implements MailStrategy {
         }
     }
 
-    @Override
     @Async
     public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
         Context context = new Context();

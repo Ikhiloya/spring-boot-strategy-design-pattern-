@@ -3,16 +3,12 @@ package com.ikhiloyaimokhai.springbootstrategydesignpattern;
 import com.ikhiloyaimokhai.springbootstrategydesignpattern.config.FileStorageProperties;
 import com.ikhiloyaimokhai.springbootstrategydesignpattern.entity.User;
 import com.ikhiloyaimokhai.springbootstrategydesignpattern.service.mail.MailService;
-import com.ikhiloyaimokhai.springbootstrategydesignpattern.service.storage.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 @SpringBootApplication
 @EnableConfigurationProperties(FileStorageProperties.class)

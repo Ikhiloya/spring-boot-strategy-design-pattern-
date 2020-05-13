@@ -11,7 +11,6 @@ import java.util.Arrays;
 /**
  * Created by Ikhiloya Imokhai on 5/7/20.
  */
-
 @Service
 public class StorageFactory {
     private final Logger log = LoggerFactory.getLogger(StorageFactory.class);
@@ -31,7 +30,6 @@ public class StorageFactory {
         String[] activeProfiles = environment.getActiveProfiles();
         log.info("Active profiles '{}'", Arrays.toString(activeProfiles));
 
-        //Check if Active profiles contains "local" or "test"
         if (Arrays.stream(environment.getActiveProfiles()).anyMatch(
                 env -> (env.equalsIgnoreCase(Constant.DEV_PROFILE)))) {
             return this.fileStorageStrategy;

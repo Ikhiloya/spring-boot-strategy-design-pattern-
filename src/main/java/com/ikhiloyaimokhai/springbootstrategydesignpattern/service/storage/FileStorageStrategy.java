@@ -30,7 +30,6 @@ import java.util.Objects;
  */
 @Service
 public class FileStorageStrategy implements StorageStrategy {
-
     private final Logger log = LoggerFactory.getLogger(FileStorageStrategy.class);
     private final Path fileStorageLocation;
 
@@ -57,7 +56,7 @@ public class FileStorageStrategy implements StorageStrategy {
 
 
         String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/p-finder/download/investigation/")
+                .path("/api/download/investigation/")
                 .path(fileName)
                 .toUriString();
 
@@ -88,6 +87,4 @@ public class FileStorageStrategy implements StorageStrategy {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
-
-
 }

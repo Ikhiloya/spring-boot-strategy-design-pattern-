@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Ikhiloya Imokhai on 5/7/20.
  */
 @Service
-public class FileStorageService {
-    private final Logger log = LoggerFactory.getLogger(FileStorageService.class);
+public class StorageService {
+    private final Logger log = LoggerFactory.getLogger(StorageService.class);
     private final StorageStrategy storageStrategy;
 
-    public FileStorageService(StorageFactory storageFactory) {
+    public StorageService(StorageFactory storageFactory) {
         this.storageStrategy = storageFactory.createStrategy();
     }
 

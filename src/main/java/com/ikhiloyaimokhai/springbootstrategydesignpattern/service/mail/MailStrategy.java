@@ -8,17 +8,11 @@ import org.springframework.scheduling.annotation.Async;
  */
 public interface MailStrategy {
     @Async
-    void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml);
+    void sendActivationEmail(User user);
 
     @Async
-    public void sendEmailFromTemplate(User user, String templateName, String titleKey);
+    void sendCreationEmail(User user);
 
     @Async
-    public void sendActivationEmail(User user);
-
-    @Async
-    public void sendCreationEmail(User user);
-
-    @Async
-    public void sendPasswordResetMail(User user);
+    void sendPasswordResetMail(User user);
 }

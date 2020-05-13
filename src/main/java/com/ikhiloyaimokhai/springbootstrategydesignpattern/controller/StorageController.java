@@ -1,7 +1,7 @@
 package com.ikhiloyaimokhai.springbootstrategydesignpattern.controller;
 
 import com.ikhiloyaimokhai.springbootstrategydesignpattern.model.FileDTO;
-import com.ikhiloyaimokhai.springbootstrategydesignpattern.service.storage.FileStorageService;
+import com.ikhiloyaimokhai.springbootstrategydesignpattern.service.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 public class StorageController {
 
     private final Logger log = LoggerFactory.getLogger(StorageController.class);
-    private FileStorageService fileStorageService;
+    private StorageService storageService;
 
-    public StorageController(FileStorageService fileStorageService) {
-        this.fileStorageService = fileStorageService;
+    public StorageController(StorageService storageService) {
+        this.storageService = storageService;
     }
 
 
@@ -29,14 +29,14 @@ public class StorageController {
     public ResponseEntity<FileDTO> uploadInvestigation(@RequestParam("file") MultipartFile file) throws Exception {
         log.info("REST request to upload file");
         //upload files
-        FileDTO fileDTO = fileStorageService.uploadFile(file);
+        FileDTO fileDTO = storageService.uploadFile(file);
         return new ResponseEntity<>(fileDTO, null, HttpStatus.OK);
     }
 
 
     @PostMapping("/download-file")
     public ResponseEntity<Object> downloadFile(@RequestBody FileDTO fileDTO, HttpServletRequest request) throws Exception {
-        return fileStorageService.downloadFile(fileDTO.getFileDownloadUri(), request);
+        return storageService.downloadFile(fileDTO.getFileDownloadUri(), request);
     }
 
 }

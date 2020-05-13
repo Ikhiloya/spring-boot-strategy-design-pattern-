@@ -39,7 +39,6 @@ public class AwsStorageStrategy implements StorageStrategy {
 
     @Value("${cloud.aws.region.static}")
     private String region;
-    //    @Value("${app.awsServices.bucketName}")
     private String bucketName;
 
     public AwsStorageStrategy(Environment environment) {
@@ -69,7 +68,6 @@ public class AwsStorageStrategy implements StorageStrategy {
         fileUrl = endpointUrl + "/" + fileName;
         uploadFileTos3bucket(fileName, file);
         boolean delete = file.delete();
-
         return new String[]{fileUrl, fileName};
     }
 
