@@ -19,8 +19,8 @@ import java.util.Locale;
  * Created by Ikhiloya Imokhai on 5/7/20.
  */
 @Service
-public class SpringMailStrategy implements MailStrategy {
-    private final Logger log = LoggerFactory.getLogger(SpringMailStrategy.class);
+public class GmailStrategy implements MailStrategy {
+    private final Logger log = LoggerFactory.getLogger(GmailStrategy.class);
 
     private static final String USER = "user";
 
@@ -36,8 +36,8 @@ public class SpringMailStrategy implements MailStrategy {
     private final Environment environment;
 
 
-    public SpringMailStrategy(Environment environment, JavaMailSender javaMailSender,
-                              MessageSource messageSource, SpringTemplateEngine templateEngine) {
+    public GmailStrategy(Environment environment, JavaMailSender javaMailSender,
+                         MessageSource messageSource, SpringTemplateEngine templateEngine) {
 
         this.environment = environment;
         this.javaMailSender = javaMailSender;

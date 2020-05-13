@@ -16,12 +16,12 @@ public class MailFactory {
     private final Logger log = LoggerFactory.getLogger(MailFactory.class);
 
     private final Environment environment;
-    private final SpringMailStrategy springMailStrategy;
+    private final GmailStrategy gmailStrategy;
     private final SendGridMailStrategy sendGridMailStrategy;
 
-    public MailFactory(Environment environment, SpringMailStrategy springMailStrategy, SendGridMailStrategy sendGridMailStrategy) {
+    public MailFactory(Environment environment, GmailStrategy gmailStrategy, SendGridMailStrategy sendGridMailStrategy) {
         this.environment = environment;
-        this.springMailStrategy = springMailStrategy;
+        this.gmailStrategy = gmailStrategy;
         this.sendGridMailStrategy = sendGridMailStrategy;
     }
 
@@ -32,12 +32,12 @@ public class MailFactory {
         //Check if Active profiles contains "local" or "test"
         if (Arrays.stream(environment.getActiveProfiles()).anyMatch(
                 env -> (env.equalsIgnoreCase(Constant.DEV_PROFILE)))) {
-            return this.springMailStrategy;
+            return this.gmailStrategy;
         } else if (Arrays.stream(environment.getActiveProfiles()).anyMatch(
                 env -> (env.equalsIgnoreCase(Constant.PROD_PROFILE)))) {
             return this.sendGridMailStrategy;
         } else {
-            return this.springMailStrategy;
+            return this.gmailStrategy;
         }
     }
 }
