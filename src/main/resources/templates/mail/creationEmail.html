@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sending Email with Thymeleaf HTML Template Example</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <!-- use the font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+
+        #activation-button .button {
+            background-color: #00678D;
+            border: none;
+            color: white;
+            padding: 20px 34px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 20px 2px;
+            cursor: pointer;
+        }
+
+        .button3 {
+            border-radius: 8px;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body style="margin: 0; padding: 0;">
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" bgcolor="#00678D" style="padding: 40px 0 30px 0;">
+            <img src="cid:logo.png" alt="Patient Finder" style="display: block;"/>
+        </td>
+    </tr>
+
+    <tr>
+        <td bgcolor="#eaeaea" style="padding: 40px 30px 40px 30px;">
+            <p th:text="'Dear ' + ${user.firstName}  + ','">Dear ${name}, </p>
+            <p> your P-finder account has been created, please click on the URL below to access it:
+            </p>
+
+            <p id="activation-button">
+                <a th:href="@{|${baseUrl}/account/reset/finish?key=${user.resetKey}|}" class="button button3">Go to
+                    Account</a>
+            </p>
+
+            <p style="margin-top:50px ">Regards,</p>
+            <p>P-finder Team.</p>
+            <p>If you received this email by mistake, you can safely ignore it.
+            </p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
