@@ -16,12 +16,12 @@ public class StorageFactory {
     private final Logger log = LoggerFactory.getLogger(StorageFactory.class);
 
     private final Environment environment;
-    private final AwsStorageStrategy awsStorageStrategy;
+    private final FirebaseStorageStrategy firebaseStorageStrategy;
     private final FileStorageStrategy fileStorageStrategy;
 
-    public StorageFactory(Environment environment, AwsStorageStrategy awsStorageStrategy, FileStorageStrategy fileStorageStrategy) {
+    public StorageFactory(Environment environment, FirebaseStorageStrategy firebaseStorageStrategy, FileStorageStrategy fileStorageStrategy) {
         this.environment = environment;
-        this.awsStorageStrategy = awsStorageStrategy;
+        this.firebaseStorageStrategy = firebaseStorageStrategy;
         this.fileStorageStrategy = fileStorageStrategy;
     }
 
@@ -35,7 +35,7 @@ public class StorageFactory {
             return this.fileStorageStrategy;
         } else if (Arrays.stream(environment.getActiveProfiles()).anyMatch(
                 env -> (env.equalsIgnoreCase(Constant.PROD_PROFILE)))) {
-            return this.awsStorageStrategy;
+            return this.firebaseStorageStrategy;
         } else {
             return this.fileStorageStrategy;
         }

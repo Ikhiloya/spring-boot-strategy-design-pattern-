@@ -56,7 +56,7 @@ public class FileStorageStrategy implements StorageStrategy {
 
 
         String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/download/investigation/")
+                .path("/api/download/")
                 .path(fileName)
                 .toUriString();
 
@@ -65,8 +65,8 @@ public class FileStorageStrategy implements StorageStrategy {
 
     public ResponseEntity<Object> downloadFile(String fileUrl, HttpServletRequest request) throws Exception {
         log.info("FileStorageStrategy==> downloading file");
-        String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
-        Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+//        String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+        Path filePath = this.fileStorageLocation.resolve(fileUrl).normalize();
         Resource resource = new UrlResource(filePath.toUri());
         if (!resource.exists())
             throw new ResourceNotFoundException("File not found " + fileUrl);

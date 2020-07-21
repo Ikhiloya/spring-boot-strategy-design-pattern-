@@ -34,9 +34,8 @@ public class StorageController {
     }
 
 
-    @PostMapping("/download-file")
-    public ResponseEntity<Object> downloadFile(@RequestBody FileDTO fileDTO, HttpServletRequest request) throws Exception {
-        return storageService.downloadFile(fileDTO.getFileDownloadUri(), request);
+    @GetMapping("/download/{fileName:.+}")
+    public ResponseEntity<Object> downloadFile(@PathVariable String fileName, HttpServletRequest request) throws Exception {
+        return storageService.downloadFile(fileName, request);
     }
-
 }
